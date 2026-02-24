@@ -1,6 +1,6 @@
 # Robot-Obstacle-Avoidance--Local-Path-Planning
 
-本仓库提供一个可本地运行的特种巡检机器人局部路径规划仿真框架，方便你专注调 `cost_fn.py`。
+本仓库用GPT codex提供一个可本地运行的特种巡检机器人局部路径规划仿真框架，方便你专注调 `cost_fn.py`。
 
 ## 文件说明
 
