@@ -24,8 +24,8 @@ python visualize_sim.py --seed 2025
 # 指定导出文件名
 python visualize_sim.py --seed 2025 --save episode_seed_2025.png
 
-# 本地桌面环境可加 --show 弹窗
-python visualize_sim.py --seed 2025 --show
+# 本地桌面环境弹窗 + 逐步动态绘制
+python visualize_sim.py --seed 2025 --show --animate --delay 0.08
 ```
 
 > 可视化依赖 `matplotlib`，若环境未安装请先本地安装。
@@ -39,3 +39,13 @@ python visualize_sim.py --seed 2025 --show
 4. 选择最小代价候选执行 0.1 秒。
 
 你只需优化 `cost_fn` 的数学设计，即可影响安全性、成功率、平滑性和到达时间。
+
+
+## 为什么改了参数，轨迹可能不变？
+
+这是正常现象，常见原因：
+- 决策是离散的 49 组速度，参数小改动若不改变 `argmin` 排名，控制输出就完全一样；
+- 你改的是某个代价项权重，但当前场景下该代价项数值范围很小，被其它项“淹没”；
+- 你可视化时用的是同一个 `seed`，同场景下若最优序列不变，轨迹就不会变。
+
+建议：先固定 seed，做明显幅度的权重调整（如 x2 或 x0.5），再对比导出的两张图。
